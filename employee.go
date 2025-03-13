@@ -37,7 +37,7 @@ func (e *Employee) GetBalance(ctx context.Context) int {
 
 func (e *Employee) GetMoney(wg *sync.WaitGroup) {
 	defer wg.Done()
-	for range 5 {
+	for range 10 {
 		time.Sleep(500 * time.Millisecond)
 		amount := randRange(1, 10)
 		fmt.Printf("%s withdraw: %d \n", e.Name, amount)
@@ -45,8 +45,9 @@ func (e *Employee) GetMoney(wg *sync.WaitGroup) {
 		if err != nil {
 			fmt.Printf("Error withdrawing: %v \n", err)
 			continue
+		} else {
+			fmt.Printf("%v withdraw success", e.Name)
+			fmt.Printf("Current balance after withdraw by %s: %d \n", e.Name, e.bank.GetBalance(context.Background()))
 		}
-		fmt.Printf("%v withdraw success", e.Name)
-		fmt.Printf("Current balance after withdraw by %s: %d \n", e.Name, e.bank.GetBalance(context.Background()))
 	}
 }

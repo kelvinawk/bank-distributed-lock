@@ -22,7 +22,7 @@ func NewBoss(bank *Bank) *Boss {
 func (b *Boss) Pay(wg *sync.WaitGroup) {
 	defer wg.Done()
 	for range 3 {
-		amount := randRange(1, 10)
+		amount := randRange(10, 20)
 		fmt.Printf("Boss pay: %d \n", amount)
 		b.bank.Deposit(context.Background(), b, amount)
 		fmt.Printf("Current balance after deposit: %d \n", b.bank.GetBalance(context.Background()))
