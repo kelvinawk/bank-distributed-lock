@@ -1,0 +1,14 @@
+services:
+  redis:
+    container_name: bank-redis
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+  
+  redisinsight:
+    container_name: bank-redisinsight
+    image: redis/redisinsight:latest
+    ports:
+      - "5540:5540"
+    depends_on:
+      - redis
