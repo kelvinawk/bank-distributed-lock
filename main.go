@@ -17,7 +17,7 @@ func main() {
 
 	go boss.Pay(&wg)
 
-	for i := 1; i < 5; i++ {
+	for i := 1; i < 4; i++ {
 		emp := NewEmployee(fmt.Sprintf("Employee %d", i), bank, rds)
 		wg.Add(1)
 		go emp.GetMoney(&wg)
