@@ -8,6 +8,11 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
+const (
+	retryDelay = 100 * time.Millisecond
+	maxRetries = 3
+)
+
 type RedisLock struct {
 	Key    string
 	Value  string
